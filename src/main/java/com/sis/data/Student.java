@@ -1,5 +1,7 @@
 package com.sis.data;
 
+import com.sis.EnhanceUserExperience.Colors;
+
 import java.sql.SQLOutput;
 
 public class Student {
@@ -35,11 +37,24 @@ public class Student {
 
     @Override
     public String toString() {
-        return  "Details are: " +this.id+ " " + this.name+ " " + this.age;
+        return String.format(
+                "ID      NAME        AGE\n" +
+                        "-----------------------\n" +
+                        Colors.RED + "%-6d" + Colors.RESET + " " +
+                        Colors.GREEN + "%-12s" + Colors.RESET + " " +
+                        Colors.ORANGE + "%-3d" + Colors.RESET,
+                this.id, this.name, this.age
+        );
+
+    }
+    public String showOnlyDetails() {
+        return String.format(
+                        Colors.RED + "%-6d" + Colors.RESET + " " +
+                        Colors.GREEN + "%-12s" + Colors.RESET + " " +
+                        Colors.ORANGE + "%-3d" + Colors.RESET,
+                this.id, this.name, this.age
+        );
+
     }
 
-    public static void main(String[] args) {
-        Student student1 = new Student(18,"Mary Jones", 21479238);
-        System.out.println(student1.toString());
-    }
 }
