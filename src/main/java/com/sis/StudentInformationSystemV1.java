@@ -46,9 +46,12 @@ public class StudentInformationSystemV1 {
                         id = scanner.nextInt();
                         scanner.nextLine();
                         int updateChoice = 0;
+                        boolean isUpdateFound = false;
                         for (int i = 0; i < studentList.size(); i++) {
+
                             currentIndex = i;
                             if (studentList.get(i) != null && (studentList.get(i).getId() == id)) {
+                                isUpdateFound = true;
                                 System.out.println("To update the name press 1, to update the age press 2");
                                 updateChoice = scanner.nextInt();
                                 scanner.nextLine();
@@ -70,39 +73,40 @@ public class StudentInformationSystemV1 {
                                 } else if (updateChoice == 1) {
                                     updateThisStudent.setName(newName);
                                 }
-                            } else if (currentIndex < 0) {
-                                System.out.println(Colors.RED + "No student match found to update." + Colors.RESET);
                             }
                         }
+                        if (!isUpdateFound) {
+                            System.out.println(Colors.RED + "No student match found to update." + Colors.RESET);
+                        }
 
-
-                    }else {
+                    } else {
                         System.out.println(Colors.RED + "No students were found to update." + Colors.RESET);
                     }
                     break;
 
 
                 case 3:
-                    if(studentList.isEmpty()==false){
-                    System.out.println("Choose the id you want to delete");
-                    id = scanner.nextInt();
-                    scanner.nextLine();
-                    int indexToDelete = -1;
+                    if (studentList.isEmpty() == false) {
+                        System.out.println("Choose the id you want to delete");
+                        id = scanner.nextInt();
+                        scanner.nextLine();
+                        int indexToDelete = -1;
 
-                    Student deletedStudent = null;
-                    for (int i = 0; i < studentList.size(); i++) {
-                        if (studentList.get(i).getId() == id) {
-                            indexToDelete = i;
+                        Student deletedStudent = null;
+                        for (int i = 0; i < studentList.size(); i++) {
+                            if (studentList.get(i).getId() == id) {
+                                indexToDelete = i;
 
-                            deletedStudent = studentList.get(i);
+                                deletedStudent = studentList.get(i);
+                            }
                         }
-                    }
-                    if (indexToDelete != -1) {
-                        studentList.remove(indexToDelete);
-                        System.out.println("Deleted: \n  " + deletedStudent.toString());
+                        if (indexToDelete != -1) {
+                            studentList.remove(indexToDelete);
+                            System.out.println("Deleted: \n  " + deletedStudent.toString());
+                        } else {
+                            System.out.println("No id match");
+                        }
                     } else {
-                        System.out.println("No id match");
-                    }}else {
                         System.out.println(Colors.RED + "No students were found to delete." + Colors.RESET);
                     }
                     break;
@@ -114,7 +118,7 @@ public class StudentInformationSystemV1 {
                             System.out.println(s.showOnlyDetails());
                         }
                     } else {
-                        System.out.println(Colors.RED +"No students were found." + Colors.RESET);
+                        System.out.println(Colors.RED + "No students were found." + Colors.RESET);
                     }
                     break;
                 case 5:
