@@ -37,7 +37,7 @@ public class StudentInformationSystemV1 {
                     break;
                 case 2:
 
-                    if (studentList.size() > 0) {
+                    if (!studentList.isEmpty()) {
                         int currentIndex = -1;
                         String newName = "X";
                         Student updateThisStudent = null;
